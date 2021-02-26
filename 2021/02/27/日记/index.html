@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Wangtaotao`s blog</title>
+  <title>日记 | Wangtaotao`s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Wangtaotao&#96;s blog">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+  <meta name="description" content="###菜不可怕，没有进步才是最可怕的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="日记">
+<meta property="og:url" content="http://yoursite.com/2021/02/27/%E6%97%A5%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Wangtaotao&#96;s blog">
+<meta property="og:description" content="###菜不可怕，没有进步才是最可怕的">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-02-26T23:51:21.000Z">
+<meta property="article:modified_time" content="2021-02-26T23:52:26.041Z">
 <meta property="article:author" content="Wangtaotaoo">
+<meta property="article:tag" content="日记">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Wangtaotao`s blog" type="application/atom+xml">
@@ -32,7 +37,7 @@
 
   
 
-</head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 <body>
   <div id="container" q-class="show:isCtnShow">
@@ -150,45 +155,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-《java多线程编程指南》笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-日记" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/25/%E3%80%8Ajava%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97%E3%80%8B%E7%AC%94%E8%AE%B0/">《java多线程编程指南》笔记</a>
+    <h1 class="article-title" itemprop="name">
+      日记
     </h1>
   
 
         
-        <a href="/2019/10/25/%E3%80%8Ajava%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97%E3%80%8B%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2019-10-24T16:52:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-25</time>
+        <a href="/2021/02/27/%E6%97%A5%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2021-02-26T23:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h2><p>概念：java中volatile 保证修饰变量的<strong>可见性</strong>和<strong>有序性</strong>但不保证<strong>原子性</strong>，但保证 long/double等类型的原子性。</p>
-<p>后半句的理解就是,volatile保障的原子性是他修饰的变量本身的原子性，但是不包括赋值操作的原子性：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">volatile</span> a;</span><br><span class="line">a = b+<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<p>其中 a 被修饰，但是如果b也是一个共享变量，那就无法保证原子性。即操作不具备不可分割性。</p>
-<p>原理：<br>volatile的底层实现也是通过内存屏障，按照书中所写：<br><img src="/assets/img/Barrier.png" alt="Barrier"></p>
-<ul>
-<li>加载屏障作用:刷新处理器缓存</li>
-<li>存储屏障作用:冲刷处理器缓存<br>刷新的意思大概是获得锁之前，要把别的线程对该变量的改变<strong>最新值</strong>，立刻同步到当前的线程所操作的处理器中。<br>冲刷的意思是当释放锁后，立即将自己改变的变量的值写到处理器的共享区域，保证其他线程读取到的是最新的值</li>
-<li>获取屏障:在一个读操作之后插入屏障，禁止该读操作与后面的任何读写操作之间进行重排序</li>
-<li>释放屏障：在一个写操作之前插入，禁止该写操作与前面的任何读写操作之间进行重排序</li>
-</ul>
-<p><img src="/assets/img/volatile_read.png" alt="volatile_读操作"></p>
-<p>读</p>
-<p><img src="/assets/img/volatile_write.png" alt="volatile_写操作"></p>
-<p>写</p>
-<hr>
-<h2 id="CAS"><a href="#CAS" class="headerlink" title="CAS"></a>CAS</h2><p>CAS相当于代理人,更新变量的值只需要代理人代为修改.代理人只能保证原子性,无法保证可见性(可以volatile配合使用)</p>
+        <p>###菜不可怕，没有进步才是最可怕的</p>
 
       
 
@@ -202,37 +189,14 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">volatile</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日记</a>
         		</li>
       		
 		</ul>
 	</div>
 
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/25/%E3%80%8Ajava%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97%E3%80%8B%E7%AC%94%E8%AE%B0/">展开全文 >></a>
-        </p>
       
 
       
@@ -240,6 +204,18 @@
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2021/02/25/Handler%E6%9C%BA%E5%88%B6/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Handler机制</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -259,488 +235,14 @@
 
 
 
-
-  
-    <article id="post-Binder源码分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/19/Binder%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">Binder源码分析</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/19/Binder%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="archive-article-date">
-  	<time datetime="2019-10-19T06:51:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/19/Binder%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-View动画" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/17/View%E5%8A%A8%E7%94%BB/">View动画</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/17/View%E5%8A%A8%E7%94%BB/" class="archive-article-date">
-  	<time datetime="2019-10-17T14:40:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="View动画遇到的问题"><a href="#View动画遇到的问题" class="headerlink" title="View动画遇到的问题"></a>View动画遇到的问题</h2><p>在标签中配置时定义一系列动画，运行过程中定义的几个动画属性并行运动。如果想让他顺序执行，怎么办？</p>
-<ul>
-<li><p>把这几个动画拆开，分别写在不同的xml动画里。在代码中为每个动画设置监听（实现AnimationListerner接口)在onAnimationEnd（）中开启第二个动画–这种方法简单但是臃肿</p>
-</li>
-<li><p>看到一个博客，这位老哥提醒了我，在xml文件中，定义第二个动画延迟一定时间(android:startOffset:xxx)，延迟的时间是第一个动画的duration.</p>
-</li>
-</ul>
-<hr>
-<h2 id="laoutAnimation"><a href="#laoutAnimation" class="headerlink" title="laoutAnimation"></a>laoutAnimation</h2><p>这个玩意在《Android开发艺术探索》中用来给ListView设置动画，确实有效果。但是如果你ListView初始的数据量是100个，超出了屏幕范围，后边的数据没有动画效果。</p>
-<p>我猜可能会有一种我不知到的解决办法，但是我确实不知道，以后知道再补充！！<br>这里提供另一种解决办法：<br>在listView的getView方法中根据item位置，为每个item单独设置动画效果。</p>
-<hr>
-<p>还有那些知识点日后补充  —–&gt;to be continue</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ViewAnimation</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/17/View%E5%8A%A8%E7%94%BB/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-后台线程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/12/%E5%90%8E%E5%8F%B0%E7%BA%BF%E7%A8%8B/">后台线程</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/12/%E5%90%8E%E5%8F%B0%E7%BA%BF%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2019-10-12T07:02:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="后台线程"><a href="#后台线程" class="headerlink" title="后台线程"></a>后台线程</h2><p>后台线程就是前台线程执行完，后台线程也跟着不执行了</p>
-<p>代码如下（参考《疯狂java讲义》）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DaemonThread</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		<span class="keyword">super</span>.run();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">			System.out.println(Thread.currentThread().getName()+<span class="string">&quot; &quot;</span>+i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		DaemonThread daemonThread = <span class="keyword">new</span> DaemonThread();</span><br><span class="line">		daemonThread.setDaemon(<span class="keyword">true</span>);</span><br><span class="line">		daemonThread.start();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</span><br><span class="line">			System.out.println(Thread.currentThread().getName()+<span class="string">&quot; &quot;</span>+i);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">&quot;main结束&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>代码值得注意的一点是当执行完主线程后，不会立即停止子线程</strong></p>
-<p><img src="/assets/img/DaemonThread.png" alt="运行结果"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/12/%E5%90%8E%E5%8F%B0%E7%BA%BF%E7%A8%8B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ubuntu下创建桌面快捷方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/01/ubuntu%E4%B8%8B%E5%88%9B%E5%BB%BA%E6%A1%8C%E9%9D%A2%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F/">ubuntu下创建桌面快捷方式</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/01/ubuntu%E4%B8%8B%E5%88%9B%E5%BB%BA%E6%A1%8C%E9%9D%A2%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2019-10-01T04:03:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>#很多软件下载下来是解压包<br>比如Android Studio<br>创建快捷方式如下</p>
-<pre><code class="java">#!/bin/bash
-[Desktop Entry]
-Encoding=UTF-8
-name=AndroidStudio
-Exec=sh /home/wtt/software/android-studio/bin/studio.sh
-Icon=/home/wtt/software/android-studio/bin/studio.png
-Info=&quot;Spark&quot;
-Terminal=false
-Type=Application
-StartupNotify=true
-```java
-
-其中Exec代表要执行的命令，对于大部分软件，我们直接用sh xxx.sh即可。但是对于部分其他软件，比如**可执行文件**application/x-executable使用sh命令不可（比如eclipse）。但是用./是可以的。
-但./放在快捷方式里运行报错，不知道为什么。
-----
-解决办法：
-自己写一个脚本命名为login.sh
-
-```java
-#!/bin/bash  
-cd /home/wtt/software/eclipse
-./eclipse
-```java
-
-此时将第一段代码块中的Exec命令改为sh /绝对路径/login.sh即可
-</code></pre>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">gnome桌面</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Linux//" class="article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/01/ubuntu%E4%B8%8B%E5%88%9B%E5%BB%BA%E6%A1%8C%E9%9D%A2%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-apk反编译" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/10/apk%E5%8F%8D%E7%BC%96%E8%AF%91/">apk反编译</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/10/apk%E5%8F%8D%E7%BC%96%E8%AF%91/" class="archive-article-date">
-  	<time datetime="2019-07-10T10:40:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!DOCTYPE html>
-<!-- saved from url=(0090)https://wangtaotaoo.github.io/2019/07/25/apk%E5%8F%8D%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7/ -->
-<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="generator" content="Hexo 3.8.0">
-
-
-<h1 id="反编译apk"><a href="#反编译apk" class="headerlink" title="反编译apk"></a><a target="_blank" rel="noopener" href="https://wangtaotaoo.github.io/2019/07/25/apk%E5%8F%8D%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7/#%E5%8F%8D%E7%BC%96%E8%AF%91apk" title="反编译apk"></a>反编译apk</h1><p>1.下载apktool<br><a target="_blank" rel="noopener" href="https://ibotpeaches.github.io/Apktool/install/">https://ibotpeaches.github.io/Apktool/install/</a><br>2.下载dex2jar(将dex文件转为jar包)<br><a target="_blank" rel="noopener" href="http://sourceforge.net/projects/dex2jar/files/">http://sourceforge.net/projects/dex2jar/files/</a><br>3.下载jd-gui（用来看jar包的）<br><a target="_blank" rel="noopener" href="http://jd.benow.ca/">http://jd.benow.ca/</a></p>
-<hr>
-<h1 id="如果是arclinux及衍生系统、"><a href="#如果是arclinux及衍生系统、" class="headerlink" title="如果是arclinux及衍生系统、"></a><a target="_blank" rel="noopener" href="https://wangtaotaoo.github.io/2019/07/25/apk%E5%8F%8D%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7/#%E5%A6%82%E6%9E%9C%E6%98%AFarclinux%E5%8F%8A%E8%A1%8D%E7%94%9F%E7%B3%BB%E7%BB%9F%E3%80%81" title="如果是arclinux及衍生系统、"></a>如果是arclinux及衍生系统、</h1><p>安装jd-gui<br>需要先安装debtap<br>step1:</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line">yaourt -S debtap</span>
-</pre></td></tr></tbody></table></figure>
-
-<p>step2:</p>
-<figure class="highlight"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line">debtap -u #更新</span>
-</pre></td></tr></tbody></table></figure>
-
-<p>step3:</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line">debtap xxx.deb</span>
-</pre></td></tr></tbody></table></figure>
-
-<p>生成了压缩文件<br>安装该压缩文件</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line">pacman -U xxx</span>
-</pre></td></tr></tbody></table></figure>
-
-<p>还有方法二（推荐）<br>直接</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line">yaourt jd-gui</span>
-</pre></td></tr></tbody></table></figure>
-
-<hr>
-<p>使用apktool 按照官网的做法，保存脚本并且命名为apktool， 下载apktool_xxx.jar(版本号),并且重命名为apktool.jar，两个文件放在相同目录下，将要反编译的apk放进去。</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line">chmod +x apktool apktool.jar</span>
-</pre></td></tr></tbody></table></figure>
-
-<p>赋予运行权限<br>开始反编译</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span>
-</pre></td><td class="code"><pre><span class="line">./apktool d xxx.apk</span>
-</pre></td></tr></tbody></table></figure>
-
-<p>我也很费解，不加./为啥不行。<br>    </div></p>
-</body></html>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Android工具</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Android//" class="article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/10/apk%E5%8F%8D%E7%BC%96%E8%AF%91/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -763,8 +265,8 @@ cd /home/wtt/software/eclipse
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

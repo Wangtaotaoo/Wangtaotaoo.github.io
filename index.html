@@ -152,6 +152,80 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-日记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/02/27/%E6%97%A5%E8%AE%B0/">日记</a>
+    </h1>
+  
+
+        
+        <a href="/2021/02/27/%E6%97%A5%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2021-02-26T23:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###菜不可怕，没有进步才是最可怕的</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/02/27/%E6%97%A5%E8%AE%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Handler机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1166,115 +1240,6 @@ B的资源就白白浪费了。
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/10/26/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-《java多线程编程指南》笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/25/%E3%80%8Ajava%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97%E3%80%8B%E7%AC%94%E8%AE%B0/">《java多线程编程指南》笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/25/%E3%80%8Ajava%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97%E3%80%8B%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2019-10-24T16:52:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h2><p>概念：java中volatile 保证修饰变量的<strong>可见性</strong>和<strong>有序性</strong>但不保证<strong>原子性</strong>，但保证 long/double等类型的原子性。</p>
-<p>后半句的理解就是,volatile保障的原子性是他修饰的变量本身的原子性，但是不包括赋值操作的原子性：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">volatile</span> a;</span><br><span class="line">a = b+<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<p>其中 a 被修饰，但是如果b也是一个共享变量，那就无法保证原子性。即操作不具备不可分割性。</p>
-<p>原理：<br>volatile的底层实现也是通过内存屏障，按照书中所写：<br><img src="/assets/img/Barrier.png" alt="Barrier"></p>
-<ul>
-<li>加载屏障作用:刷新处理器缓存</li>
-<li>存储屏障作用:冲刷处理器缓存<br>刷新的意思大概是获得锁之前，要把别的线程对该变量的改变<strong>最新值</strong>，立刻同步到当前的线程所操作的处理器中。<br>冲刷的意思是当释放锁后，立即将自己改变的变量的值写到处理器的共享区域，保证其他线程读取到的是最新的值</li>
-<li>获取屏障:在一个读操作之后插入屏障，禁止该读操作与后面的任何读写操作之间进行重排序</li>
-<li>释放屏障：在一个写操作之前插入，禁止该写操作与前面的任何读写操作之间进行重排序</li>
-</ul>
-<p><img src="/assets/img/volatile_read.png" alt="volatile_读操作"></p>
-<p>读</p>
-<p><img src="/assets/img/volatile_write.png" alt="volatile_写操作"></p>
-<p>写</p>
-<hr>
-<h2 id="CAS"><a href="#CAS" class="headerlink" title="CAS"></a>CAS</h2><p>CAS相当于代理人,更新变量的值只需要代理人代为修改.代理人只能保证原子性,无法保证可见性(可以volatile配合使用)</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">volatile</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/25/%E3%80%8Ajava%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97%E3%80%8B%E7%AC%94%E8%AE%B0/">展开全文 >></a>
         </p>
       
 
