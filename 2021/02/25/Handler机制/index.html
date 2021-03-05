@@ -16,7 +16,7 @@
 <meta property="og:description" content="Handler  Handler团伙总共有四个大兄弟  Handler， Looper, MessageQueue, Message.   工作过程是这样， Looper一个无线循环负责取消息，MessgaeQueue负责维护一个存放Message的单链表。其中 的 Looper, MessageQueue 是线程私有的（存在ThreadLocal里） 一个异步消息的过程是这样的： 创建Handl">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-02-25T12:03:17.000Z">
-<meta property="article:modified_time" content="2021-02-25T14:10:26.747Z">
+<meta property="article:modified_time" content="2021-03-02T12:10:19.138Z">
 <meta property="article:author" content="Wangtaotaoo">
 <meta property="article:tag" content="handler">
 <meta name="twitter:card" content="summary">
@@ -195,6 +195,11 @@
 <li>为什么要用到Native层的代码，java不可以吗？</li>
 <li>网上说的hadler内存泄漏是为啥？ (原因是 msg的target持有 handler 而handler作为非静态内部类持有activity的引用)</li>
 </ul>
+<hr>
+<p>附加疑问：<br>Android主线程的Looper是在哪里创建的？ Looper与 ThreadLocal的有什么关系？</p>
+<p>在ActivityThread方法的main方法中，调用了**Looper.prepareMainLooper();**方法 -&gt; 调用 prepare()方法。 看一下prepare()方法的实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">(<span class="keyword">boolean</span> quitAllowed)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (sThreadLocal.get() != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">&quot;Only one Looper may be created per thread&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    sThreadLocal.set(<span class="keyword">new</span> Looper(quitAllowed));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里面将 Looper 存到ThreadLocal里。  由于ThreadLocal是在ActivityThread创建（主线程）， 所以主线程就拥有了Looper。</p>
 
       
 
@@ -383,15 +388,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ViewAnimation</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">SharedPreferences</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Android</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ViewAnimation</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -420,6 +425,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
               </li>
              
               <li class="article-tag-list-item">

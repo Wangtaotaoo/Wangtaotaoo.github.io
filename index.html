@@ -152,6 +152,100 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-jvm复习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/05/jvm%E5%A4%8D%E4%B9%A0/">jvm复习</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/05/jvm%E5%A4%8D%E4%B9%A0/" class="archive-article-date">
+  	<time datetime="2021-03-05T14:19:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="最近有两个面试，关于jvm问的很多，所以记录一下，以后复习也可以用到"><a href="#最近有两个面试，关于jvm问的很多，所以记录一下，以后复习也可以用到" class="headerlink" title="最近有两个面试，关于jvm问的很多，所以记录一下，以后复习也可以用到"></a>最近有两个面试，关于jvm问的很多，所以记录一下，以后复习也可以用到</h2><h3 id="JVM内存模型："><a href="#JVM内存模型：" class="headerlink" title="JVM内存模型："></a>JVM内存模型：</h3><p>1.程序计数器：<br>    特点:线程私有<br>    作用:程序计数器负责记录当前代码执行到了哪里<br>2.java虚拟机栈<br>    特点：线程私有<br>    作用：由栈帧组成<br>    &gt; + 局部变量表： 存储方法的形参，和局部变量。<br>    &gt; + 操作数栈： 在变量进行存储时，需要进行入栈和出栈<br>    &gt; + 动态链接： 引用类型的指针<br>    &gt; + 方法的返回地址</p>
+<p>3.本地方法栈<br>    native层的虚拟机栈<br>4.堆<br>    存对象的<br>5.方法区<br>    存类的class文件的</p>
+<p>附神图:</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="%22/assets/img/jvm_memory.jpeg%22" alt="java虚拟机"></h2><h3 id="垃圾回收算法"><a href="#垃圾回收算法" class="headerlink" title="垃圾回收算法"></a>垃圾回收算法</h3><p>1.标记清除<br>2.标记整理<br>3.复制算法<br>4.分代收集</p>
+<p>复制算法分为三个区<br>Eden Space，Survivor Space，Old Gen</p>
+<p>Survivor再划分为： From, To区</p>
+<p>Eden : From: To = 8:1:1 (hotSpot虚拟机上是这样)</p>
+<p><img src="%22assets/img/jvm_Eden.png%22" alt="Eden"></p>
+<hr>
+<p>垃圾回收器：<br>。。。以后再准备</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/05/jvm%E5%A4%8D%E4%B9%A0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Android事件分发机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -331,6 +425,11 @@
 <li>为什么要用到Native层的代码，java不可以吗？</li>
 <li>网上说的hadler内存泄漏是为啥？ (原因是 msg的target持有 handler 而handler作为非静态内部类持有activity的引用)</li>
 </ul>
+<hr>
+<p>附加疑问：<br>Android主线程的Looper是在哪里创建的？ Looper与 ThreadLocal的有什么关系？</p>
+<p>在ActivityThread方法的main方法中，调用了**Looper.prepareMainLooper();**方法 -&gt; 调用 prepare()方法。 看一下prepare()方法的实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">(<span class="keyword">boolean</span> quitAllowed)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (sThreadLocal.get() != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">&quot;Only one Looper may be created per thread&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    sThreadLocal.set(<span class="keyword">new</span> Looper(quitAllowed));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里面将 Looper 存到ThreadLocal里。  由于ThreadLocal是在ActivityThread创建（主线程）， 所以主线程就拥有了Looper。</p>
 
       
 
@@ -1141,111 +1240,6 @@ B的资源就白白浪费了。
 
 
   
-    <article id="post-废柴的九个特点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/18/%E5%BA%9F%E6%9F%B4%E7%9A%84%E4%B9%9D%E4%B8%AA%E7%89%B9%E7%82%B9/">废柴的九个特点</a>
-    </h1>
-  
-
-        
-        <a href="/2019/11/18/%E5%BA%9F%E6%9F%B4%E7%9A%84%E4%B9%9D%E4%B8%AA%E7%89%B9%E7%82%B9/" class="archive-article-date">
-  	<time datetime="2019-11-17T17:37:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="废柴的九个特点"><a href="#废柴的九个特点" class="headerlink" title="废柴的九个特点"></a>废柴的九个特点</h1><ul>
-<li><p>拒绝学习</p>
-</li>
-<li><p>总找借口</p>
-</li>
-<li><p>三分钟热度</p>
-</li>
-<li><p>恐惧</p>
-</li>
-<li><p>犹豫不决</p>
-</li>
-<li><p>逃避现实</p>
-</li>
-<li><p>拖延</p>
-</li>
-<li><p>害怕拒绝</p>
-</li>
-<li><p>自我设限</p>
-</li>
-</ul>
-<p>时刻理智，时刻理智！</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/日记//" class="article-tag-list-link color3">日记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/18/%E5%BA%9F%E6%9F%B4%E7%9A%84%E4%B9%9D%E4%B8%AA%E7%89%B9%E7%82%B9/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1351,15 +1345,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ViewAnimation</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">SharedPreferences</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Android</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ViewAnimation</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1388,6 +1382,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
               </li>
              
               <li class="article-tag-list-item">
