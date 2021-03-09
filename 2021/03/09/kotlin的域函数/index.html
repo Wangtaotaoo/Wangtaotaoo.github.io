@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Http各个版本的区别 | Wangtaotao`s blog</title>
+  <title>kotlin的域函数 | Wangtaotao`s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="历史http截止到现在的时间，总共发布了四个版本0.9（以及废弃了），1.0, 1.1 ,2.0(其中谷歌还发明了一个版本，介于1.1与 2.0之间的一个版本，后来被2.0吸取了精髓，现在已经不用了) 1.0版本与1.1的区别   1.缓存处理 1.0中使用 if-Modified-Since来判断， http1.1加入了缓存控制策略：（1.Entity tag, If-Unmodified-Si">
+  <meta name="description" content="kotlin的域函数经常使用的有如下几种：  apply() with() let()在开发过程中可以便捷操作。首先看apply的定义12345678@kotlin.internal.InlineOnlypublic inline fun &lt;T&gt; T.apply(block: T.() -&gt; Unit): T &amp;#123;    contract &amp;#123;        ca">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Http各个版本的区别">
-<meta property="og:url" content="http://yoursite.com/2021/02/24/Http%E5%90%84%E4%B8%AA%E7%89%88%E6%9C%AC%E7%9A%84%E5%8C%BA%E5%88%AB/index.html">
+<meta property="og:title" content="kotlin的域函数">
+<meta property="og:url" content="http://yoursite.com/2021/03/09/kotlin%E7%9A%84%E5%9F%9F%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="Wangtaotao&#96;s blog">
-<meta property="og:description" content="历史http截止到现在的时间，总共发布了四个版本0.9（以及废弃了），1.0, 1.1 ,2.0(其中谷歌还发明了一个版本，介于1.1与 2.0之间的一个版本，后来被2.0吸取了精髓，现在已经不用了) 1.0版本与1.1的区别   1.缓存处理 1.0中使用 if-Modified-Since来判断， http1.1加入了缓存控制策略：（1.Entity tag, If-Unmodified-Si">
+<meta property="og:description" content="kotlin的域函数经常使用的有如下几种：  apply() with() let()在开发过程中可以便捷操作。首先看apply的定义12345678@kotlin.internal.InlineOnlypublic inline fun &lt;T&gt; T.apply(block: T.() -&gt; Unit): T &amp;#123;    contract &amp;#123;        ca">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-02-23T20:16:53.000Z">
-<meta property="article:modified_time" content="2021-02-23T21:02:49.471Z">
+<meta property="article:published_time" content="2021-03-09T11:23:52.000Z">
+<meta property="article:modified_time" content="2021-03-09T14:12:36.677Z">
 <meta property="article:author" content="Wangtaotaoo">
-<meta property="article:tag" content="http">
+<meta property="article:tag" content="kotlin">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Wangtaotao`s blog" type="application/atom+xml">
@@ -155,71 +155,35 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Http各个版本的区别" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-kotlin的域函数" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Http各个版本的区别
+      kotlin的域函数
     </h1>
   
 
         
-        <a href="/2021/02/24/Http%E5%90%84%E4%B8%AA%E7%89%88%E6%9C%AC%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-article-date">
-  	<time datetime="2021-02-23T20:16:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-24</time>
+        <a href="/2021/03/09/kotlin%E7%9A%84%E5%9F%9F%E5%87%BD%E6%95%B0/" class="archive-article-date">
+  	<time datetime="2021-03-09T11:23:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h2><p>http截止到现在的时间，总共发布了四个版本<br>0.9（以及废弃了），1.0, 1.1 ,2.0<br>(其中谷歌还发明了一个版本，介于1.1与 2.0之间的一个版本，后来被2.0吸取了精髓，现在已经不用了)</p>
-<h3 id="1-0版本与1-1的区别"><a href="#1-0版本与1-1的区别" class="headerlink" title="1.0版本与1.1的区别"></a>1.0版本与1.1的区别</h3><blockquote>
-<blockquote>
-<blockquote>
-<p>1.缓存处理 1.0中使用 if-Modified-Since来判断， http1.1加入了缓存控制策略：<br>（1.Entity tag, If-Unmodified-Since, If-Match, If-None-Match）<br>—以后再补充</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>2.断点续传： 1.0不支持传部分数据， 1.1支持传部分数据，（header中的range头域 - 返回码是206），这样也减轻了带宽的负担</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>3.增加了新的错误状态码</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>4.host头处理， 1.0没有传递主机名<br>1.1强制要求</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>5.长连接， 1.0是发送一次请求就断开连接（无状态的特点），1.1 可以在一个http上传送多个http请求和响应， 不需要每次请求都要重新三次握手建立连接。</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<h3 id="附加一个面试题"><a href="#附加一个面试题" class="headerlink" title="附加一个面试题"></a>附加一个面试题</h3><ul>
-<li>为什么http建立连接要三次握手？</li>
+        <h3 id="kotlin的域函数"><a href="#kotlin的域函数" class="headerlink" title="kotlin的域函数"></a>kotlin的域函数</h3><p>经常使用的有如下几种：</p>
+<ul>
+<li>apply()</li>
+<li>with()</li>
+<li>let()<br>在开发过程中可以便捷操作。<br>首先看apply的定义<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@kotlin</span>.internal.InlineOnly</span><br><span class="line"><span class="keyword">public</span> inline fun &lt;T&gt; T.apply(block: T.() -&gt; Unit): T &#123;</span><br><span class="line">    contract &#123;</span><br><span class="line">        callsInPlace(block, InvocationKind.EXACTLY_ONCE)</span><br><span class="line">    &#125;</span><br><span class="line">    block()</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+所有的域函数是定义在Standard.kt里面的顶层函数<br>是一个inline函数，inline函数会在调用处把inline内部的代码复制过去。<br>把这个函数转成java字节码， 由于这个是系统类，（没转成功）我们仿写一个相同的kt文件，相同的方法。</li>
 </ul>
-<p>第一次建立连接是发送一个SYN = 1的 seq = x 序列，示意服务端我要和你建立连接。<br><br/><br>服务器发送一个 SYN = 1, ack = x+1, seq = y的序列 ， 告诉我收到了你的请求<br><br/><br>客户端收到服务器的返回后， 再发送一个 ack = y+1, seq = x+1的序列</p>
-<br/>
-如果两次握手行不行？
-不行。 有种特殊情况， A 向 B 请求建立连接， 第一个请求没有收到B的回复， 这时候A会再发一个请求，这个B回复了A的请求，连接建立。 传输过后释放连接。
-但是！！ A的第一个请求并没丢失，只是在某个线路上慢了， 这个时候B收到A的确认， 会误以为A发送了新的建立连接的请求，这个时候B与A建立了连接，（但是A自己都不知道这件事）
-B的资源就白白浪费了。
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">InlineClazzKt</span> </span>&#123;</span><br><span class="line">   <span class="meta">@ExperimentalContracts</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Object <span class="title">apply</span><span class="params">(Object $<span class="keyword">this</span>$apply, <span class="meta">@NotNull</span> Function1 block)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">int</span> $i$f$apply = <span class="number">0</span>;</span><br><span class="line">      Intrinsics.checkNotNullParameter(block, <span class="string">&quot;block&quot;</span>);</span><br><span class="line">      <span class="keyword">boolean</span> var3 = <span class="keyword">false</span>;</span><br><span class="line">      block.invoke($<span class="keyword">this</span>$apply);</span><br><span class="line">      <span class="keyword">return</span> $<span class="keyword">this</span>$apply;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>看参数，第一个参数apply是传入的 Object，即调用者的实例， 第二个是一个<strong>Function1</strong>的实现<br>我们重写的其实就是Function1的invoke方法，他在这里面调用了 invoke方法。<br>至于 contract 是 ContractBuilder中的一个方法。 叫协议， 在方法调用中没有起什么作用，主要用作编译器检查用的。</p>
 
       
 
@@ -233,7 +197,7 @@ B的资源就白白浪费了。
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">kotlin</a>
         		</li>
       		
 		</ul>
@@ -252,18 +216,9 @@ B的资源就白白浪费了。
   
 <nav id="article-nav">
   
-    <a href="/2021/02/25/Handler%E6%9C%BA%E5%88%B6/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Handler机制
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/05/28/%E6%B2%A1%E7%AD%94%E4%B8%8A%E6%9D%A5%E7%9A%84%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86%E7%82%B9/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">没答上来的面试知识点</div>
+    <a href="/2021/03/08/Retrofit%E8%BF%94%E5%9B%9E%E7%BD%91%E9%A1%B5%E7%9A%84Html/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Retrofit返回网页的Html</div>
       <i class="icon-circle-right"></i>
     </a>
   

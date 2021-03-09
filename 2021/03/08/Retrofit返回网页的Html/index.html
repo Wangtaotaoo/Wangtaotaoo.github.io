@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Http各个版本的区别 | Wangtaotao`s blog</title>
+  <title>Retrofit返回网页的Html | Wangtaotao`s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="历史http截止到现在的时间，总共发布了四个版本0.9（以及废弃了），1.0, 1.1 ,2.0(其中谷歌还发明了一个版本，介于1.1与 2.0之间的一个版本，后来被2.0吸取了精髓，现在已经不用了) 1.0版本与1.1的区别   1.缓存处理 1.0中使用 if-Modified-Since来判断， http1.1加入了缓存控制策略：（1.Entity tag, If-Unmodified-Si">
+  <meta name="description" content="仿踩坑加入Retrofit的addConverterFactory的时候，一般是填写Gson..，但是如果网页根本就不是Gson格式的，你不加ConverterFactory会导致报错所以 1implementation &amp;#x27;com.squareup.retrofit2:converter-scalars:latest.version&amp;#x27;  会返回text&#x2F;pain 除此之外，还需">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Http各个版本的区别">
-<meta property="og:url" content="http://yoursite.com/2021/02/24/Http%E5%90%84%E4%B8%AA%E7%89%88%E6%9C%AC%E7%9A%84%E5%8C%BA%E5%88%AB/index.html">
+<meta property="og:title" content="Retrofit返回网页的Html">
+<meta property="og:url" content="http://yoursite.com/2021/03/08/Retrofit%E8%BF%94%E5%9B%9E%E7%BD%91%E9%A1%B5%E7%9A%84Html/index.html">
 <meta property="og:site_name" content="Wangtaotao&#96;s blog">
-<meta property="og:description" content="历史http截止到现在的时间，总共发布了四个版本0.9（以及废弃了），1.0, 1.1 ,2.0(其中谷歌还发明了一个版本，介于1.1与 2.0之间的一个版本，后来被2.0吸取了精髓，现在已经不用了) 1.0版本与1.1的区别   1.缓存处理 1.0中使用 if-Modified-Since来判断， http1.1加入了缓存控制策略：（1.Entity tag, If-Unmodified-Si">
+<meta property="og:description" content="仿踩坑加入Retrofit的addConverterFactory的时候，一般是填写Gson..，但是如果网页根本就不是Gson格式的，你不加ConverterFactory会导致报错所以 1implementation &amp;#x27;com.squareup.retrofit2:converter-scalars:latest.version&amp;#x27;  会返回text&#x2F;pain 除此之外，还需">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-02-23T20:16:53.000Z">
-<meta property="article:modified_time" content="2021-02-23T21:02:49.471Z">
+<meta property="article:published_time" content="2021-03-07T20:21:42.000Z">
+<meta property="article:modified_time" content="2021-03-07T21:00:54.533Z">
 <meta property="article:author" content="Wangtaotaoo">
-<meta property="article:tag" content="http">
+<meta property="article:tag" content="retrofit">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Wangtaotao`s blog" type="application/atom+xml">
@@ -155,71 +155,31 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Http各个版本的区别" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Retrofit返回网页的Html" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Http各个版本的区别
+      Retrofit返回网页的Html
     </h1>
   
 
         
-        <a href="/2021/02/24/Http%E5%90%84%E4%B8%AA%E7%89%88%E6%9C%AC%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-article-date">
-  	<time datetime="2021-02-23T20:16:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-24</time>
+        <a href="/2021/03/08/Retrofit%E8%BF%94%E5%9B%9E%E7%BD%91%E9%A1%B5%E7%9A%84Html/" class="archive-article-date">
+  	<time datetime="2021-03-07T20:21:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-08</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h2><p>http截止到现在的时间，总共发布了四个版本<br>0.9（以及废弃了），1.0, 1.1 ,2.0<br>(其中谷歌还发明了一个版本，介于1.1与 2.0之间的一个版本，后来被2.0吸取了精髓，现在已经不用了)</p>
-<h3 id="1-0版本与1-1的区别"><a href="#1-0版本与1-1的区别" class="headerlink" title="1.0版本与1.1的区别"></a>1.0版本与1.1的区别</h3><blockquote>
-<blockquote>
-<blockquote>
-<p>1.缓存处理 1.0中使用 if-Modified-Since来判断， http1.1加入了缓存控制策略：<br>（1.Entity tag, If-Unmodified-Since, If-Match, If-None-Match）<br>—以后再补充</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>2.断点续传： 1.0不支持传部分数据， 1.1支持传部分数据，（header中的range头域 - 返回码是206），这样也减轻了带宽的负担</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>3.增加了新的错误状态码</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>4.host头处理， 1.0没有传递主机名<br>1.1强制要求</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>5.长连接， 1.0是发送一次请求就断开连接（无状态的特点），1.1 可以在一个http上传送多个http请求和响应， 不需要每次请求都要重新三次握手建立连接。</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<h3 id="附加一个面试题"><a href="#附加一个面试题" class="headerlink" title="附加一个面试题"></a>附加一个面试题</h3><ul>
-<li>为什么http建立连接要三次握手？</li>
-</ul>
-<p>第一次建立连接是发送一个SYN = 1的 seq = x 序列，示意服务端我要和你建立连接。<br><br/><br>服务器发送一个 SYN = 1, ack = x+1, seq = y的序列 ， 告诉我收到了你的请求<br><br/><br>客户端收到服务器的返回后， 再发送一个 ack = y+1, seq = x+1的序列</p>
-<br/>
-如果两次握手行不行？
-不行。 有种特殊情况， A 向 B 请求建立连接， 第一个请求没有收到B的回复， 这时候A会再发一个请求，这个B回复了A的请求，连接建立。 传输过后释放连接。
-但是！！ A的第一个请求并没丢失，只是在某个线路上慢了， 这个时候B收到A的确认， 会误以为A发送了新的建立连接的请求，这个时候B与A建立了连接，（但是A自己都不知道这件事）
-B的资源就白白浪费了。
+        <h3 id="仿踩坑"><a href="#仿踩坑" class="headerlink" title="仿踩坑"></a>仿踩坑</h3><p>加入Retrofit的addConverterFactory的时候，一般是填写Gson..，但是如果网页根本就不是Gson格式的，你不加ConverterFactory会导致报错<br>所以</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implementation <span class="string">&#x27;com.squareup.retrofit2:converter-scalars:latest.version&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>会返回text/pain</p>
+<p>除此之外，还需要在Retrofit的 Api 中 设置返回值为 Call<ResponseBody></p>
 
       
 
@@ -233,7 +193,7 @@ B的资源就白白浪费了。
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">retrofit</a>
         		</li>
       		
 		</ul>
@@ -252,18 +212,18 @@ B的资源就白白浪费了。
   
 <nav id="article-nav">
   
-    <a href="/2021/02/25/Handler%E6%9C%BA%E5%88%B6/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/03/09/kotlin%E7%9A%84%E5%9F%9F%E5%87%BD%E6%95%B0/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Handler机制
+          kotlin的域函数
         
       </div>
     </a>
   
   
-    <a href="/2020/05/28/%E6%B2%A1%E7%AD%94%E4%B8%8A%E6%9D%A5%E7%9A%84%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86%E7%82%B9/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">没答上来的面试知识点</div>
+    <a href="/2021/03/05/jvm%E5%A4%8D%E4%B9%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">jvm复习</div>
       <i class="icon-circle-right"></i>
     </a>
   
