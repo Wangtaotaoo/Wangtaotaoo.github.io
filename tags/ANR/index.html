@@ -6,19 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>View动画 | Wangtaotao`s blog</title>
+  <title>Tag: ANR | Wangtaotao`s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="View动画遇到的问题在标签中配置时定义一系列动画，运行过程中定义的几个动画属性并行运动。如果想让他顺序执行，怎么办？  把这几个动画拆开，分别写在不同的xml动画里。在代码中为每个动画设置监听（实现AnimationListerner接口)在onAnimationEnd（）中开启第二个动画–这种方法简单但是臃肿  看到一个博客，这位老哥提醒了我，在xml文件中，定义第二个动画延迟一定时间(and">
-<meta property="og:type" content="article">
-<meta property="og:title" content="View动画">
-<meta property="og:url" content="http://yoursite.com/2019/10/17/View%E5%8A%A8%E7%94%BB/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Wangtaotao&#96;s blog">
+<meta property="og:url" content="http://yoursite.com/tags/ANR/index.html">
 <meta property="og:site_name" content="Wangtaotao&#96;s blog">
-<meta property="og:description" content="View动画遇到的问题在标签中配置时定义一系列动画，运行过程中定义的几个动画属性并行运动。如果想让他顺序执行，怎么办？  把这几个动画拆开，分别写在不同的xml动画里。在代码中为每个动画设置监听（实现AnimationListerner接口)在onAnimationEnd（）中开启第二个动画–这种方法简单但是臃肿  看到一个博客，这位老哥提醒了我，在xml文件中，定义第二个动画延迟一定时间(and">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2019-10-17T14:40:52.000Z">
-<meta property="article:modified_time" content="2019-10-17T15:12:42.000Z">
 <meta property="article:author" content="Wangtaotaoo">
-<meta property="article:tag" content="ViewAnimation">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Wangtaotao`s blog" type="application/atom+xml">
@@ -37,7 +32,7 @@
 
   
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+</head>
 
 <body>
   <div id="container" q-class="show:isCtnShow">
@@ -155,115 +150,68 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-View动画" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      View动画
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2021" class="archive-year">2021</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/03/12/anr%E6%8E%92%E6%9F%A5/" class="archive-article-date">
+  	<time datetime="2021-03-12T14:00:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-12</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2021/03/12/anr%E6%8E%92%E6%9F%A5/">anr排查</a>
     </h1>
   
 
-        
-        <a href="/2019/10/17/View%E5%8A%A8%E7%94%BB/" class="archive-article-date">
-  	<time datetime="2019-10-17T14:40:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="View动画遇到的问题"><a href="#View动画遇到的问题" class="headerlink" title="View动画遇到的问题"></a>View动画遇到的问题</h2><p>在标签中配置时定义一系列动画，运行过程中定义的几个动画属性并行运动。如果想让他顺序执行，怎么办？</p>
-<ul>
-<li><p>把这几个动画拆开，分别写在不同的xml动画里。在代码中为每个动画设置监听（实现AnimationListerner接口)在onAnimationEnd（）中开启第二个动画–这种方法简单但是臃肿</p>
-</li>
-<li><p>看到一个博客，这位老哥提醒了我，在xml文件中，定义第二个动画延迟一定时间(android:startOffset:xxx)，延迟的时间是第一个动画的duration.</p>
-</li>
-</ul>
-<hr>
-<h2 id="laoutAnimation"><a href="#laoutAnimation" class="headerlink" title="laoutAnimation"></a>laoutAnimation</h2><p>这个玩意在《Android开发艺术探索》中用来给ListView设置动画，确实有效果。但是如果你ListView初始的数据量是100个，超出了屏幕范围，后边的数据没有动画效果。</p>
-<p>我猜可能会有一种我不知到的解决办法，但是我确实不知道，以后知道再补充！！<br>这里提供另一种解决办法：<br>在listView的getView方法中根据item位置，为每个item单独设置动画效果。</p>
-<hr>
-<p>还有那些知识点日后补充  —–&gt;to be continue</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ViewAnimation</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ANR</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2019/10/19/Binder%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Binder源码分析
-        
-      </div>
-    </a>
   
   
-    <a href="/2019/10/12/%E5%90%8E%E5%8F%B0%E7%BA%BF%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">后台线程</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -286,9 +234,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

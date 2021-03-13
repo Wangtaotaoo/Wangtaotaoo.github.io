@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>View动画 | Wangtaotao`s blog</title>
+  <title>百度一面面经 | Wangtaotao`s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="View动画遇到的问题在标签中配置时定义一系列动画，运行过程中定义的几个动画属性并行运动。如果想让他顺序执行，怎么办？  把这几个动画拆开，分别写在不同的xml动画里。在代码中为每个动画设置监听（实现AnimationListerner接口)在onAnimationEnd（）中开启第二个动画–这种方法简单但是臃肿  看到一个博客，这位老哥提醒了我，在xml文件中，定义第二个动画延迟一定时间(and">
+  <meta name="description" content="1.讲一下你的项目2.项目中遇到了哪些技术难点，怎么解决的3.JVM你了解吗？（回答了java内存模型）4.JVM的垃圾回收算法你了解吗？5.JVM的垃圾回收器？6.什么时候会触发垃圾回收判断对象要不要回收（引用计数器，还有GCRoots的那个）？ 7.kotlin和java的设计理念有什么区别？8.kotlin的域函数你了解吗？9.inline函数你知道吗？10.数据库的三个范式？内容11.出了">
 <meta property="og:type" content="article">
-<meta property="og:title" content="View动画">
-<meta property="og:url" content="http://yoursite.com/2019/10/17/View%E5%8A%A8%E7%94%BB/index.html">
+<meta property="og:title" content="百度一面面经">
+<meta property="og:url" content="http://yoursite.com/2021/03/14/%E7%99%BE%E5%BA%A6%E4%B8%80%E9%9D%A2%E9%9D%A2%E7%BB%8F/index.html">
 <meta property="og:site_name" content="Wangtaotao&#96;s blog">
-<meta property="og:description" content="View动画遇到的问题在标签中配置时定义一系列动画，运行过程中定义的几个动画属性并行运动。如果想让他顺序执行，怎么办？  把这几个动画拆开，分别写在不同的xml动画里。在代码中为每个动画设置监听（实现AnimationListerner接口)在onAnimationEnd（）中开启第二个动画–这种方法简单但是臃肿  看到一个博客，这位老哥提醒了我，在xml文件中，定义第二个动画延迟一定时间(and">
+<meta property="og:description" content="1.讲一下你的项目2.项目中遇到了哪些技术难点，怎么解决的3.JVM你了解吗？（回答了java内存模型）4.JVM的垃圾回收算法你了解吗？5.JVM的垃圾回收器？6.什么时候会触发垃圾回收判断对象要不要回收（引用计数器，还有GCRoots的那个）？ 7.kotlin和java的设计理念有什么区别？8.kotlin的域函数你了解吗？9.inline函数你知道吗？10.数据库的三个范式？内容11.出了">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2019-10-17T14:40:52.000Z">
-<meta property="article:modified_time" content="2019-10-17T15:12:42.000Z">
+<meta property="article:published_time" content="2021-03-13T19:33:32.000Z">
+<meta property="article:modified_time" content="2021-03-13T20:19:44.969Z">
 <meta property="article:author" content="Wangtaotaoo">
-<meta property="article:tag" content="ViewAnimation">
+<meta property="article:tag" content="面经">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Wangtaotao`s blog" type="application/atom+xml">
@@ -155,38 +155,33 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-View动画" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-百度一面面经" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      View动画
+      百度一面面经
     </h1>
   
 
         
-        <a href="/2019/10/17/View%E5%8A%A8%E7%94%BB/" class="archive-article-date">
-  	<time datetime="2019-10-17T14:40:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-17</time>
+        <a href="/2021/03/14/%E7%99%BE%E5%BA%A6%E4%B8%80%E9%9D%A2%E9%9D%A2%E7%BB%8F/" class="archive-article-date">
+  	<time datetime="2021-03-13T19:33:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="View动画遇到的问题"><a href="#View动画遇到的问题" class="headerlink" title="View动画遇到的问题"></a>View动画遇到的问题</h2><p>在标签中配置时定义一系列动画，运行过程中定义的几个动画属性并行运动。如果想让他顺序执行，怎么办？</p>
-<ul>
-<li><p>把这几个动画拆开，分别写在不同的xml动画里。在代码中为每个动画设置监听（实现AnimationListerner接口)在onAnimationEnd（）中开启第二个动画–这种方法简单但是臃肿</p>
-</li>
-<li><p>看到一个博客，这位老哥提醒了我，在xml文件中，定义第二个动画延迟一定时间(android:startOffset:xxx)，延迟的时间是第一个动画的duration.</p>
-</li>
-</ul>
+        <p>1.讲一下你的项目<br>2.项目中遇到了哪些技术难点，怎么解决的<br>3.JVM你了解吗？（回答了java内存模型）<br>4.JVM的垃圾回收算法你了解吗？<br>5.JVM的垃圾回收器？<br>6.什么时候会触发垃圾回收<br>判断对象要不要回收（引用计数器，还有GCRoots的那个）？</p>
+<p>7.kotlin和java的设计理念有什么区别？<br>8.kotlin的域函数你了解吗？<br>9.inline函数你知道吗？<br>10.数据库的三个范式？内容<br>11.出了一个数据库的题目。<br>12.Activity的四种启动模式？<br>13.Service的两种启动方式？<br>14.Service的被系统杀死后怎么重启<br>15.Android的通信机制你知道吗？（Binder机制）<br>16.java线程池有哪些<br>17.项目中用过哪些设计模式<br>18.mvvm的优缺点</p>
+<p>用过哪些 jetpack库？<br>为什么要用ViewModel？<br>ViewModel的生命周期与activity的生命周期的对应关系？<br>databinding的优缺点。</p>
+<p>项目中遇到过oom吗？如何排查oom？<br>项目中遇到过ANR吗？如何排查ANR?(我确实没遇到过)</p>
+<p>View的绘制流程讲一下？</p>
 <hr>
-<h2 id="laoutAnimation"><a href="#laoutAnimation" class="headerlink" title="laoutAnimation"></a>laoutAnimation</h2><p>这个玩意在《Android开发艺术探索》中用来给ListView设置动画，确实有效果。但是如果你ListView初始的数据量是100个，超出了屏幕范围，后边的数据没有动画效果。</p>
-<p>我猜可能会有一种我不知到的解决办法，但是我确实不知道，以后知道再补充！！<br>这里提供另一种解决办法：<br>在listView的getView方法中根据item位置，为每个item单独设置动画效果。</p>
-<hr>
-<p>还有那些知识点日后补充  —–&gt;to be continue</p>
+<p>总结一下：<br>这是生平第一次面大厂，大厂的面试更倾向于，提出一个点，让你自己来解决和概括这个点。<br>会跟你扣细节的那种，比较注重基础。<br>所以说学完一个点要经常总结一下，然后就是相信自己，坚持，坚持，让总结成为一种习惯。</p>
 
       
 
@@ -200,13 +195,24 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ViewAnimation</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面经</a>
         		</li>
       		
 		</ul>
 	</div>
 
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Android//" class="article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -219,18 +225,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/10/19/Binder%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Binder源码分析
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/10/12/%E5%90%8E%E5%8F%B0%E7%BA%BF%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">后台线程</div>
+    <a href="/2021/03/12/anr%E6%8E%92%E6%9F%A5/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">anr排查</div>
       <i class="icon-circle-right"></i>
     </a>
   
