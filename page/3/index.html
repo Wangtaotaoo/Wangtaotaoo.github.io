@@ -152,6 +152,153 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Binder源码分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/19/Binder%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">Binder源码分析</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/19/Binder%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="archive-article-date">
+  	<time datetime="2019-10-19T06:51:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/19/Binder%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-View动画" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/17/View%E5%8A%A8%E7%94%BB/">View动画</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/17/View%E5%8A%A8%E7%94%BB/" class="archive-article-date">
+  	<time datetime="2019-10-17T14:40:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="View动画遇到的问题"><a href="#View动画遇到的问题" class="headerlink" title="View动画遇到的问题"></a>View动画遇到的问题</h2><p>在标签中配置时定义一系列动画，运行过程中定义的几个动画属性并行运动。如果想让他顺序执行，怎么办？</p>
+<ul>
+<li><p>把这几个动画拆开，分别写在不同的xml动画里。在代码中为每个动画设置监听（实现AnimationListerner接口)在onAnimationEnd（）中开启第二个动画–这种方法简单但是臃肿</p>
+</li>
+<li><p>看到一个博客，这位老哥提醒了我，在xml文件中，定义第二个动画延迟一定时间(android:startOffset:xxx)，延迟的时间是第一个动画的duration.</p>
+</li>
+</ul>
+<hr>
+<h2 id="laoutAnimation"><a href="#laoutAnimation" class="headerlink" title="laoutAnimation"></a>laoutAnimation</h2><p>这个玩意在《Android开发艺术探索》中用来给ListView设置动画，确实有效果。但是如果你ListView初始的数据量是100个，超出了屏幕范围，后边的数据没有动画效果。</p>
+<p>我猜可能会有一种我不知到的解决办法，但是我确实不知道，以后知道再补充！！<br>这里提供另一种解决办法：<br>在listView的getView方法中根据item位置，为每个item单独设置动画效果。</p>
+<hr>
+<p>还有那些知识点日后补充  —–&gt;to be continue</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ViewAnimation</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/17/View%E5%8A%A8%E7%94%BB/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-后台线程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
