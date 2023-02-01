@@ -142,6 +142,127 @@
                 
 
                 <h3 class="home-article-title">
+                    <a href="/2023/01/30/bindService%E7%9A%84%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/">
+                        Binder学习[二]--- bindService的启动
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        Service的启动上一节分析了aidl的执行过程,但是会有一点懵逼,
+
+ServiceConnection#onServiceConnected(IBinder service)中的IBinder对象, 到底是哪里来的?
+Client端调用bind...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Jan 30 2023 16:54:04 GMT+0800">2023-01-30</span></span>
+        
+        
+    </div>
+
+    <a href="/2023/01/30/bindService%E7%9A%84%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2023/01/29/Binder%E5%AD%A6%E4%B9%A0/">
+                        Binder学习[一]--- Aidl的执行过程
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        Aidl简介: aidl又叫做Android Interface Definition Language (AIDL) 安卓接口描述性语言.主要在跨进程通信的使用,通过定义描述性语言,AndroidStudio会将定义的语言转化为对应的java类.
+...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Jan 29 2023 15:38:05 GMT+0800">2023-01-29</span></span>
+        
+        
+    </div>
+
+    <a href="/2023/01/29/Binder%E5%AD%A6%E4%B9%A0/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2022/11/07/gradle%E5%AE%9E%E7%94%A8%E6%8F%92%E4%BB%B6/">
+                        gradle实用插件
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        给打包出来的apk更换名字1234567891011121314151617applicationVariants.all &#123; variant -&gt;    variant.outputs.all &#123; output -&gt;...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Nov 07 2022 14:35:43 GMT+0800">2022-11-07</span></span>
+        
+        
+    </div>
+
+    <a href="/2022/11/07/gradle%E5%AE%9E%E7%94%A8%E6%8F%92%E4%BB%B6/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2022/07/13/WMS%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
+                        WMS读书笔记
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        本着自我提升的目的,和加深记忆的原因,记录一下阅读WM时候的读书笔记WMS本意是WindowManagerService.
+
+目前学习的方法是先看书的一个章节,看的时候会记录疑惑部分,最后他通过自己阅读源码的方式解决疑惑.
+最后再记下笔记.
+
+
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Jul 13 2022 18:54:14 GMT+0800">2022-07-13</span></span>
+        
+        
+    </div>
+
+    <a href="/2022/07/13/WMS%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
                     <a href="/2022/05/12/%E6%AF%8F%E6%97%A5%E5%AD%A6%E4%B9%A0%E4%B8%80%E7%82%B9%E7%82%B9/">
                         每日学习一点点
                     </a>
@@ -328,131 +449,6 @@ ApplicationThread 通过ActivityThread启动Activity.
 
             </li>
         
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2021/03/12/anr%E6%8E%92%E6%9F%A5/">
-                        anr排查
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        ANR原因
-Activity在5s没有对用户的操作作出响应
-广播在10s onResevier方法没有处理完操作
-Service在20s 没有执行完成这是网上的描述的三种产生anr的情况
-
-那么系统是如何抛出anr的？：用户点击后，系统会调用Hand...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Mar 12 2021 22:00:51 GMT+0800">2021-03-12</span></span>
-        
-        
-    </div>
-
-    <a href="/2021/03/12/anr%E6%8E%92%E6%9F%A5/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2021/03/10/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E5%BF%B5/">
-                        数据库概念
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        三大范式
-第一范式： 不可拆分 &gt; 数据库里面的每一列是不可拆分的原子值
-第二范式： 完全依赖 &gt; 数据库的每一列的都与主键相关， （例如一个表有两个主键， 其他属性都必须依赖这两个主键，而不能依赖其中的一个）
-第三范式： 消除传递依赖 ...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Mar 10 2021 03:28:44 GMT+0800">2021-03-10</span></span>
-        
-        
-    </div>
-
-    <a href="/2021/03/10/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E5%BF%B5/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2021/03/09/kotlin%E7%9A%84%E5%9F%9F%E5%87%BD%E6%95%B0/">
-                        kotlin的域函数
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        kotlin的域函数经常使用的有如下几种：
-
-apply()
-with()
-let()在开发过程中可以便捷操作。首先看apply的定义12345678@kotlin.internal.InlineOnlypublic inline fun &lt;T...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Mar 09 2021 19:23:52 GMT+0800">2021-03-09</span></span>
-        
-        
-    </div>
-
-    <a href="/2021/03/09/kotlin%E7%9A%84%E5%9F%9F%E5%87%BD%E6%95%B0/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2021/03/08/Retrofit%E8%BF%94%E5%9B%9E%E7%BD%91%E9%A1%B5%E7%9A%84Html/">
-                        Retrofit返回网页的Html
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        仿踩坑加入Retrofit的addConverterFactory的时候，一般是填写Gson..，但是如果网页根本就不是Gson格式的，你不加ConverterFactory会导致报错所以
-1implementation &#x27;com.squa...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Mar 08 2021 04:21:42 GMT+0800">2021-03-08</span></span>
-        
-        
-    </div>
-
-    <a href="/2021/03/08/Retrofit%E8%BF%94%E5%9B%9E%E7%BD%91%E9%A1%B5%E7%9A%84Html/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
     </ul>
 
     <div class="home-paginator">
@@ -484,7 +480,7 @@ let()在开发过程中可以便捷操作。首先看apply的定义12345678@kotl
               <span>2020</span>
               -
             
-            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">刨土的藏野驴</a>
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">刨土的藏野驴</a>
         </div>
         
         <div class="theme-info info-item">

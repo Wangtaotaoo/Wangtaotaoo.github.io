@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="刨土的藏野驴">
+    
+    <title>
+        
+            Binder学习[一]--- Aidl的执行过程 |
+        
+        看个锤子
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/avatar.jpeg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#FF6B6B","avatar":"/images/avatar.jpeg","favicon":"/images/avatar.jpeg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Android开发工程师"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/avatar.jpeg">
+                </a>
+            
+            <a class="logo-title" href="/">
+                看个锤子
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Binder学习[一]--- Aidl的执行过程</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">刨土的藏野驴</span>
+                        
+                            <span class="author-label">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2023-01-29 15:38:05</span>
+        <span class="mobile">2023-01-29 15:38</span>
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/binder/">binder</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="Aidl"><a href="#Aidl" class="headerlink" title="Aidl"></a>Aidl</h1><p>简介: aidl又叫做Android Interface Definition Language (AIDL) 安卓接口描述性语言.<br>主要在跨进程通信的使用,通过定义描述性语言,AndroidStudio会将定义的语言转化为对应的java类.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">IAIDL</span> <span class="keyword">extends</span> <span class="title class_">IInterface</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Stub</span> <span class="keyword">extends</span> <span class="title class_">Binder</span> implemation IAIDL &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> java.lang.<span class="type">String</span> <span class="variable">DESCRIPTOR</span> <span class="operator">=</span> <span class="string">&quot;com.mi.tob.ctdoorbellsdk.IMsgManager&quot;</span>;</span><br><span class="line"><span class="comment">//这里的标识符是唯一的binder标识符.</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Proxy</span> implemation IAIDL&#123;</span><br><span class="line">        ****</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>以上是生成类的大致结构.</p>
+<h1 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h1><p>使用aidl进行跨进程通信,采用C&#x2F;S架构.</p>
+<p><strong>Client</strong>调用bindeService()方法, 在ServiceConnection#onServiceConnected()中调用<br>IAIDL.Stub.asInterface(IBinder)方法. 将IBinder对象转化为定义的类.</p>
+<p><strong>Server</strong>端返回一个实现Stub的实例对象</p>
+<h1 id="调用过程"><a href="#调用过程" class="headerlink" title="调用过程"></a>调用过程</h1><p><strong>Client</strong>端:</p>
+<h2 id="asInterface"><a href="#asInterface" class="headerlink" title="asInterface"></a>asInterface</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> com.mi.tob.ctdoorbellsdk.IMsgManager <span class="title function_">asInterface</span><span class="params">(android.os.IBinder obj)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> ((obj == <span class="literal">null</span>)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//根据唯一的描述符查询实例</span></span><br><span class="line">    android.os.<span class="type">IInterface</span> <span class="variable">iin</span> <span class="operator">=</span> obj.queryLocalInterface(DESCRIPTOR);</span><br><span class="line">    <span class="keyword">if</span> (((iin != <span class="literal">null</span>) &amp;&amp; (iin <span class="keyword">instanceof</span> com.mi.tob.ctdoorbellsdk.IMsgManager))) &#123;</span><br><span class="line">        <span class="keyword">return</span> ((com.mi.tob.ctdoorbellsdk.IMsgManager) iin);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">com</span>.mi.tob.ctdoorbellsdk.IMsgManager.Stub.Proxy(obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果 Server于Client位于同一个进程, 那么在 queryLocalInterface()中将会直接返回Stub对象. </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * Construct the stub at attach it to the interface.</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">Stub</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="built_in">this</span>.attachInterface(<span class="built_in">this</span>, DESCRIPTOR);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这里设置了默认值</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">attachInterface</span><span class="params">(<span class="meta">@Nullable</span> IInterface owner, <span class="meta">@Nullable</span> String descriptor)</span> &#123;</span><br><span class="line">        mOwner = owner;</span><br><span class="line">        mDescriptor = descriptor;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果在相同的进程,将会返回Stub对象<br>如果在不同的进程,则会返回Stub.Proxy –远程的代理对象</p>
+<h2 id="remoteService-xxxFunction"><a href="#remoteService-xxxFunction" class="headerlink" title="remoteService.xxxFunction()"></a>remoteService.xxxFunction()</h2><p>假设Server于Client在不同的进程, 当binder对象调用 xxxx.Function().会将参数写进Parcel对象.<br>并调用server的transact()方法, 最终会调用 onTransact()方法. 通过 Parcel对象写回返回值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getState</span><span class="params">()</span> <span class="keyword">throws</span> android.os.RemoteException &#123;</span><br><span class="line">     android.os.<span class="type">Parcel</span> <span class="variable">_data</span> <span class="operator">=</span> android.os.Parcel.obtain();</span><br><span class="line">     android.os.<span class="type">Parcel</span> <span class="variable">_reply</span> <span class="operator">=</span> android.os.Parcel.obtain();</span><br><span class="line">     <span class="type">int</span> _result;</span><br><span class="line">     <span class="keyword">try</span> &#123;</span><br><span class="line">         _data.writeInterfaceToken(DESCRIPTOR);</span><br><span class="line">         <span class="type">boolean</span> <span class="variable">_status</span> <span class="operator">=</span> mRemote.transact(Stub.TRANSACTION_getState, _data, _reply, <span class="number">0</span>);</span><br><span class="line">         <span class="keyword">if</span> (!_status &amp;&amp; getDefaultImpl() != <span class="literal">null</span>) &#123;</span><br><span class="line">             <span class="keyword">return</span> getDefaultImpl().getState();</span><br><span class="line">         &#125;</span><br><span class="line">         _reply.readException();</span><br><span class="line">         _result = _reply.readInt();</span><br><span class="line">     &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">         _reply.recycle();</span><br><span class="line">         _data.recycle();</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> _result;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p><del>transact中又会调用onTransact()</del><br>这里的mRemote是BinderProxy. 要看binderProxy的具体实现—-实际上调用了 <strong>transactNative()方法</strong>通过jni调用到 ioctl(), 使用binder调用到Server端的onTransact()</p>
+<p><img src="/assets/img/binder_transact_process.png" alt="transact调用的时序图"></p>
+<p>onTransact就已经执行到了Server进程.并在OnTransact中调用了具体的方法的实现</p>
+<p>也就因此完成了一次跨进程通信</p>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/binder/">#binder</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2023/01/30/bindService%E7%9A%84%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Binder学习[二]--- bindService的启动</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/11/07/gradle%E5%AE%9E%E7%94%A8%E6%8F%92%E4%BB%B6/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">gradle实用插件</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">刨土的藏野驴</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+<div class="post-scripts">
+    
+</div>
+
+
+
+</body>
+</html>
