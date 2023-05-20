@@ -9,7 +9,7 @@
     
     <title>
         
-            每日学习一点点 |
+            排查AndroidManifest合并问题 |
         
         看个锤子
     </title>
@@ -130,7 +130,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">每日学习一点点</span>
+            <span class="title-hover-animation">排查AndroidManifest合并问题</span>
         </div>
 
         
@@ -149,8 +149,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-05-12 23:08:21</span>
-        <span class="mobile">2022-05-12 23:08</span>
+        <span class="pc">2023-05-20 10:57:45</span>
+        <span class="mobile">2023-05-20 10:57</span>
     </span>
     
     
@@ -159,7 +159,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/">学习计划</a>&nbsp;
+                        <a href="/tags/Android/">Android</a>&nbsp;
                     </li>
                 
             </ul>
@@ -178,28 +178,31 @@
         
 
         <div class="article-content markdown-body">
-            <h1 id="每日学习"><a href="#每日学习" class="headerlink" title="每日学习"></a>每日学习</h1><p>已经很久没学习了，这样对发展很不好，博客只用做记录每日的学习点击和笔记之用</p>
-<p>今天学习了gradle的通用配置<br>步骤如下：</p>
-<ol>
-<li>首先在本目录下创建 common.gradle<br>在其中加入如下内容:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">project.ext  &#123;</span><br><span class="line">    compileSdkVersion = <span class="number">30</span></span><br><span class="line">    buildTooldVersion = <span class="string">&quot;30.0.1&quot;</span></span><br><span class="line">    minSdkVersion = <span class="number">23</span></span><br><span class="line">    targetSdkVersion = <span class="number">30</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-最后在model的build.gradle中加入<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apply from : <span class="string">&quot;$&#123;project.rootDir&#125;/common.gradle&quot;</span></span><br></pre></td></tr></table></figure></li>
+            <h3 id="遇到AndroidManifest合并后如何解决"><a href="#遇到AndroidManifest合并后如何解决" class="headerlink" title="遇到AndroidManifest合并后如何解决"></a>遇到AndroidManifest合并后如何解决</h3><h4 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h4><p>有时更新了一个SDK后,点击△Run后, 好好的项目突然跑不起来了?</p>
+<p>我们知道是这个新的SDK导致的,但是如何排查?</p>
+<h4 id="排查"><a href="#排查" class="headerlink" title="排查"></a>排查</h4><ol>
+<li>首先运行时, Gradle会给出错误build的具体原因:</li>
 </ol>
-<hr>
-<p>还有一种配置方法: (只需要配置一次)<br>在根目录的build.gradle中加入如下</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">subprojects &#123;</span><br><span class="line">    apply from : <span class="string">&quot;$&#123;projrct.rootDir&#125;/common.gradle&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>就可以在所有的module中生效</p>
-<hr>
-<p>2023.02.23<br>复习一下UML的几个箭头</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">imterface B &#123;&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> impl B &#123;&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="——–△-代表着实现接口-ClassA-—△-B"><a href="#——–△-代表着实现接口-ClassA-—△-B" class="headerlink" title="——–△ 代表着实现接口 (ClassA —△ B)"></a>——–△ 代表着实现接口 (ClassA —△ B)</h2><h2 id="一一一一一三角-代表集成关系-ClassA-一一一△-B-这个是实线"><a href="#一一一一一三角-代表集成关系-ClassA-一一一△-B-这个是实线" class="headerlink" title="一一一一一三角 代表集成关系(ClassA 一一一△ B) 这个是实线"></a>一一一一一三角 代表集成关系(ClassA 一一一△ B) 这个是实线</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line">    A(B b) &#123;...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="—–-gt-代表依赖-ClassA-—-gt-ClassB"><a href="#—–-gt-代表依赖-ClassA-—-gt-ClassB" class="headerlink" title="—–&gt; 代表依赖 (ClassA —-&gt; ClassB)"></a>—–&gt; 代表依赖 (ClassA —-&gt; ClassB)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line">    B b;</span><br><span class="line">    A() &#123;...&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="一一一-gt-代表关联-ClassA-一一一-gt-classB-实线"><a href="#一一一-gt-代表关联-ClassA-一一一-gt-classB-实线" class="headerlink" title="一一一&gt; 代表关联(ClassA 一一一&gt;classB) 实线"></a>一一一&gt; 代表关联(ClassA 一一一&gt;classB) 实线</h2><p>关联比依赖的相关性更强一些</p>
-<p>此外还有,关联的两种特例</p>
-<ul>
-<li>聚合 代表 has-a的关系</li>
-<li>组合 代表contains-a的关系</li>
-</ul>
-<hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xxx/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml:32: error: unexpected element &lt;queries&gt; found <span class="keyword">in</span> &lt;manifest&gt;.</span><br></pre></td></tr></table></figure>
+<p>指出具体的路径.</p>
+<p>打开AndroidManifest然后查看32行</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;queries&gt;</span><br><span class="line">    &lt;intent&gt;</span><br><span class="line">        &lt;action <span class="attr">android:</span>name=<span class="string">&quot;android.media.browse.MediaBrowserService&quot;</span> /&gt;</span><br><span class="line">    &lt;/intent&gt;</span><br><span class="line">&lt;/queries&gt;</span><br></pre></td></tr></table></figure>
+<p>确实多了这个queries的标签, 但是这个标签是由于引入哪个依赖倒进来的?</p>
+<p>如果直接在External Libraries中点击对应的依赖查看它的AndroidManifest.xml. </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">package</span>=<span class="string">&quot;com.package.packagename&quot;</span> &gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">uses-sdk</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:minSdkVersion</span>=<span class="string">&quot;24&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:targetSdkVersion</span>=<span class="string">&quot;30&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>发现没有添加任何其他标签.</p>
+<p>这就贼坑.找不到问题. 这种排查办法显然就废了.</p>
+<ol start="2">
+<li>好在Android 在编译过程中会将 <strong>主app</strong>, <strong>项目module</strong> 以及<strong>引入的三方aar</strong>中的AndroidManifest文件merge到一起,在这个merge的过程中, 会生成一份log日志.</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app/build/outputs/log/manifest-merger-debug-report.txt</span><br></pre></td></tr></table></figure>
+<p>此时打开文件搜索 <em>queries</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ADDED from [androidx.media:media:<span class="number">1.4</span><span class="number">.1</span>] /Users/xxx/xxx</span><br></pre></td></tr></table></figure>
+<p>这不就找到了罪魁祸首是这个玩意</p>
+<ol start="3">
+<li>查看[androidx.media:media:1.4.1] 是哪里引入<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./<span class="attr">gradlew :</span><span class="attr">app:</span>dependencies</span><br></pre></td></tr></table></figure>
+在输出结果中,搜索出即可.</li>
+</ol>
 
         </div>
 
@@ -209,7 +212,7 @@
             <ul class="post-tags-box">
                 
                     <li class="tag-item">
-                        <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/">#学习计划</a>&nbsp;
+                        <a href="/tags/Android/">#Android</a>&nbsp;
                     </li>
                 
             </ul>
@@ -218,29 +221,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/07/13/WMS%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">WMS读书笔记</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/04/25/%E3%80%8Aandroid%E8%BF%9B%E9%98%B6%E8%A7%A3%E5%AF%86%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%8B/"
+                           href="/2023/03/02/%E9%97%B2%E6%9D%82%E7%AC%94%E8%AE%B0/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">《android进阶解密读书笔记2》</span>
+                                <span class="post-nav-title-item">闲杂笔记</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
